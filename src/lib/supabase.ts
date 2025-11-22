@@ -3,8 +3,8 @@ import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
-// Supabase client is optional: if env vars не заданы, приложение не падает,
-// просто работает без загрузки данных с бэкенда.
+// Создаём клиент только если заданы переменные окружения.
+// Иначе оставляем supabase = null, чтобы фронт не падал.
 let supabase: SupabaseClient | null = null;
 
 if (supabaseUrl && supabaseAnonKey) {
@@ -27,11 +27,13 @@ export type Property = {
   country: string;
   bedrooms: number;
   bathrooms: number;
-  area: number;
+  square_feet: number;
+  year_built: number;
   property_type: string;
-  image_url: string | null;
-  featured: boolean;
   status: 'for_sale' | 'sold' | 'pending';
+  image_url: string | null;
+  images: string[];
+  features: string[] | null;
   created_at: string;
   updated_at: string;
 };

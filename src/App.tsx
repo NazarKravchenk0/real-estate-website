@@ -9,6 +9,184 @@ import { SuccessMessage } from './components/SuccessMessage';
 import { Footer } from './components/Footer';
 import { supabase, Property } from './lib/supabase';
 
+
+const STATIC_PROPERTIES: Property[] = [
+  {
+    id: '1',
+    title: 'Modern Downtown Loft',
+    description: 'Stunning modern loft in the heart of downtown with floor-to-ceiling windows and breathtaking city views. Features an open floor plan, gourmet kitchen with stainless steel appliances, hardwood floors throughout, and luxury finishes.',
+    price: 875000,
+    address: '123 Main Street',
+    city: 'San Francisco',
+    state: 'CA',
+    zip_code: '94102',
+    country: 'USA',
+    bedrooms: 2,
+    bathrooms: 2,
+    square_feet: 1500,
+    year_built: 2020,
+    property_type: 'Condo',
+    status: 'for_sale',
+    image_url: '/images/modern-downtown-loft-1.jpg',
+    images: ['/images/modern-downtown-loft-1.jpg', '/images/modern-downtown-loft-2.jpg', '/images/modern-downtown-loft-3.jpg'],
+    features: [
+      'City Views',
+      'Hardwood Floors',
+      'Stainless Steel Appliances',
+      'Open Floor Plan',
+      'Parking Included',
+      'Gym Access',
+    ],
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: '2',
+    title: 'Charming Victorian Home',
+    description: 'Beautifully restored Victorian home with original architectural details. Spacious rooms, updated kitchen and bathrooms, large backyard perfect for entertaining. Walking distance to parks, shops, and restaurants.',
+    price: 1250000,
+    address: '456 Oak Avenue',
+    city: 'San Francisco',
+    state: 'CA',
+    zip_code: '94110',
+    country: 'USA',
+    bedrooms: 4,
+    bathrooms: 3,
+    square_feet: 2800,
+    year_built: 1905,
+    property_type: 'Single Family',
+    status: 'for_sale',
+    image_url: '/images/charming-victorian-home-1.jpg',
+    images: ['/images/charming-victorian-home-1.jpg', '/images/charming-victorian-home-2.jpg', '/images/charming-victorian-home-3.jpg'],
+    features: [
+      'Updated Kitchen',
+      'Original Details',
+      'Large Backyard',
+      'Hardwood Floors',
+      'Bay Windows',
+      'Close to Transit',
+    ],
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: '3',
+    title: 'Luxury Beachfront Condo',
+    description: 'Spectacular oceanfront condo with panoramic views of the Pacific. This luxury unit features high-end finishes, spa-like bathrooms, chef\'s kitchen, and private balcony. Resort-style amenities including pool, spa, and fitness center.',
+    price: 2100000,
+    address: '789 Ocean Drive',
+    city: 'Santa Monica',
+    state: 'CA',
+    zip_code: '90401',
+    country: 'USA',
+    bedrooms: 3,
+    bathrooms: 3,
+    square_feet: 2200,
+    year_built: 2018,
+    property_type: 'Condo',
+    status: 'for_sale',
+    image_url: '/images/luxury-beachfront-condo-1.jpg',
+    images: ['/images/luxury-beachfront-condo-1.jpg', '/images/luxury-beachfront-condo-2.jpg', '/images/luxury-beachfront-condo-3.jpg'],
+    features: [
+      'Ocean Views',
+      'Private Balcony',
+      'Pool',
+      'Spa',
+      'Fitness Center',
+      '24/7 Security',
+    ],
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: '4',
+    title: 'Cozy Suburban Retreat',
+    description: 'Perfect family home in a quiet neighborhood with excellent schools. Updated throughout with new paint, flooring, and modern fixtures. Large fenced yard, two-car garage, and plenty of storage space.',
+    price: 685000,
+    address: '321 Maple Lane',
+    city: 'San Jose',
+    state: 'CA',
+    zip_code: '95123',
+    country: 'USA',
+    bedrooms: 3,
+    bathrooms: 2.5,
+    square_feet: 2000,
+    year_built: 1998,
+    property_type: 'Single Family',
+    status: 'for_sale',
+    image_url: '/images/cozy-suburban-retreat-1.jpg',
+    images: ['/images/cozy-suburban-retreat-1.jpg', '/images/cozy-suburban-retreat-2.jpg', '/images/cozy-suburban-retreat-3.jpg'],
+    features: [
+      'Fenced Yard',
+      'Two Car Garage',
+      'Updated Interior',
+      'Good Schools',
+      'Quiet Neighborhood',
+      'Storage Space',
+    ],
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: '5',
+    title: 'Contemporary Mountain View Home',
+    description: 'Stunning contemporary home with breathtaking mountain views. Open concept design with walls of glass, chef\'s kitchen, master suite with spa bathroom, and outdoor living space with infinity pool.',
+    price: 1850000,
+    address: '654 Ridge Road',
+    city: 'Los Altos',
+    state: 'CA',
+    zip_code: '94022',
+    country: 'USA',
+    bedrooms: 4,
+    bathrooms: 4.5,
+    square_feet: 3500,
+    year_built: 2019,
+    property_type: 'Single Family',
+    status: 'for_sale',
+    image_url: '/images/contemporary-mountain-view-home-1.jpg',
+    images: ['/images/contemporary-mountain-view-home-1.jpg', '/images/contemporary-mountain-view-home-2.jpg', '/images/contemporary-mountain-view-home-3.jpg'],
+    features: [
+      'Mountain Views',
+      'Infinity Pool',
+      'Open Concept',
+      'Spa Bathroom',
+      'Chef Kitchen',
+      'Smart Home',
+    ],
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: '6',
+    title: 'Historic Craftsman Bungalow',
+    description: 'Charming craftsman bungalow with authentic period details. Features include built-in cabinets, original woodwork, coved ceilings, and cozy fireplace. Updated systems while maintaining historic character.',
+    price: 925000,
+    address: '987 Pine Street',
+    city: 'Pasadena',
+    state: 'CA',
+    zip_code: '91101',
+    country: 'USA',
+    bedrooms: 3,
+    bathrooms: 2,
+    square_feet: 1800,
+    year_built: 1922,
+    property_type: 'Single Family',
+    status: 'for_sale',
+    image_url: '/images/historic-craftsman-bungalow-1.jpg',
+    images: ['/images/historic-craftsman-bungalow-1.jpg', '/images/historic-craftsman-bungalow-2.jpg', '/images/historic-craftsman-bungalow-3.jpg'],
+    features: [
+      'Historic Character',
+      'Fireplace',
+      'Built-ins',
+      'Original Woodwork',
+      'Updated Systems',
+      'Covered Porch',
+    ],
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+];
+
 function App() {
   const [properties, setProperties] = useState<Property[]>([]);
   const [filteredProperties, setFilteredProperties] = useState<Property[]>([]);
@@ -33,11 +211,12 @@ function App() {
   }, [properties, filters, searchQuery]);
 
   const fetchProperties = async () => {
-    // Если Supabase не настроен (нет env-переменных), не ломаем приложение
+    // Если Supabase не настроен, используем статические демо-объекты,
+    // чтобы сайт выглядел как пример из Bolt.
     if (!supabase) {
-      console.warn('Supabase client is not configured. Using empty property list.');
-      setProperties([]);
-      setFilteredProperties([]);
+      console.warn('Supabase client is not configured. Using static demo properties.');
+      setProperties(STATIC_PROPERTIES);
+      setFilteredProperties(STATIC_PROPERTIES);
       setLoading(false);
       return;
     }
@@ -51,17 +230,17 @@ function App() {
 
       if (error) {
         console.error('Error fetching properties:', error);
-        setProperties([]);
-        setFilteredProperties([]);
+        setProperties(STATIC_PROPERTIES);
+        setFilteredProperties(STATIC_PROPERTIES);
       } else {
-        const safeData = (data || []) as Property[];
+        const safeData = (data && data.length > 0 ? data : STATIC_PROPERTIES) as Property[];
         setProperties(safeData);
         setFilteredProperties(safeData);
       }
     } catch (error) {
       console.error('Error fetching properties:', error);
-      setProperties([]);
-      setFilteredProperties([]);
+      setProperties(STATIC_PROPERTIES);
+      setFilteredProperties(STATIC_PROPERTIES);
     } finally {
       setLoading(false);
     }
